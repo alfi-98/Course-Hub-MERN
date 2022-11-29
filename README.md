@@ -100,4 +100,13 @@ app.listen(4000, () => {
 PS F:\MERN\coursehub\backend> npm install dotenv
 ```
 - dotenv package loads environment variables from ```.env``` to ```process.env``` object globally in a nodejs environment. 
-
+- In top of our server.js file we require ```dotenv``` package. 
+``` 
+require('dotenv').config()
+```
+- Again, we replace the hardcoded port number in ```app.listen()``` to ```process.env.PORT```.
+```
+app.listen(process.env.PORT, () => {
+      console.log('Listening on port ', process.env.PORT)
+}
+```
