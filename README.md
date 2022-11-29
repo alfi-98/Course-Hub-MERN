@@ -73,7 +73,7 @@ app.get('/', (req, res) => {
 ```
 - get() function tells the server what to do with the get request when the given route is called. It has a callback function that listen to the incoming request ```req``` object and respond using ```res``` reponse object. 
 ```
-💡The code untill looks like this: 
+💡The code untill now looks like this: 
 
 const express = require('express')
 
@@ -90,5 +90,14 @@ app.listen(4000, () => {
       console.log('Listening on port 4000')
 }
 ```
-
+## 👉 Using Environment Variables
+- To protect the database connection string, authentication secrect and other sensitive data we can use environment variables. 
+- The environment variables will remain hidden when we upload our code to github. 
+- We create another file named ```.env``` file. For now we keep the port number inside the file: ``` PORT=4000 ```
+- Now, to access these environment variblaes from our code we need dotenv package. 
+- In terminal: 
+```
+PS F:\MERN\coursehub\backend> npm install dotenv
+```
+- dotenv package loads environment variables from ```.env``` to ```process.env``` object globally in a nodejs environment. 
 
