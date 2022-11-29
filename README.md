@@ -24,6 +24,7 @@ frontend
 
 # Explaining the stack
 - For frontend we will be using ReactJS and the backend is an express app running on a NodeJS environment. This express app will handle the user request and interact with the database to send back data, update data, create data and delete data.
+- We will use Express framework with NodeJs since it offers simplicity, efficiency and provides routing, middleware and other components to get an application work quickly. 
 - The backend will also handle user login and signup.
 <img width="396" alt="image" src="https://user-images.githubusercontent.com/66726759/204442129-1ebb205d-7583-45d9-8d65-4502f3d28b7c.png">
 
@@ -45,8 +46,13 @@ npm init -y
 npm install express
 ```
 - Now inside the server.js file we need to require the express package. 
-``` const express = require('express')```
+``` 
+const express = require('express')
+```
 - Then we create an express app by storing it in constant app. 
-``` const app = express()```
+```
+const app = express()
+```
+
 
 
