@@ -145,8 +145,27 @@ module.exports = router
 - ``` router.get('/', getCourses) ```  here, when our server gets api request with the endpoint ```/```  then the ```getCourses``` function is fired.
 - In the above code, we have imported some functions from a file path: ```'../controllers/courseController'```
 - We will configure the controller functions later in this documentation.
+- However, to get access to these routes we need to import the routes from course.js and  use a middleware in our server.js file: 
+```
+const courseRoutes = require('./routes/courses')
+...
+app.use('/api/courses',courseRoutes)
+```
 
 ## 👉 Setting Up Database 
 - We will be using MongoDB as our database. MongoDB is a document database. Which means, instead of using tables and rows for data storing we will be using documents which resembles ```json```. 
 - Instead of configuring the database on our local machine, we will be using  MongoDB atlas which is acloud-based developer data platform. 
 - This will save us time and will be easy to manage. 
+<img width="956" alt="image" src="https://user-images.githubusercontent.com/66726759/204498861-8d48d88f-9072-40d5-8998-4dcc9290fc9a.png">
+- As we can see in the above picture, we need to go to the Network Access section of the MongoDB atlas dashboard after loggin in. Then we need to add our current IP address to connect with our network. 
+- Under the Database section we can find a ```connect``` option which will open a window like the below image:
+<img width="538" alt="image" src="https://user-images.githubusercontent.com/66726759/204499687-b771803d-c5bb-45d5-93f3-506e36c8fc6a.png">
+- We have to copy the connection string and add this to our ```.env``` file. 
+- Next up we will install a package called ```mongoose``` which will help us with our MongoDB database.  
+- To install mongoose:
+``` 
+npm install mongoose
+```
+
+
+
