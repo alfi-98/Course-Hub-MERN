@@ -356,3 +356,17 @@ module.exports = {
     updateCourse
 }
 ```
+
+# 📚 Frontend
+- At first we create a react app inside the main project file in the terminal:
+``` 
+npx create-react-app frontend
+```
+- Next thing we need to do is install the ```react-router-dom``` package to route to different pages. 
+- In the terminal:
+```
+npm install react-router-dom
+```
+- In the App.js file inside the ```/frontend/src``` folder we import ```BrowserRouter``` which wraps everywhere we want to use the router. 
+
+
