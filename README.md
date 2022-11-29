@@ -163,9 +163,112 @@ app.use('/api/courses',courseRoutes)
 - We have to copy the connection string and add this to our ```.env``` file. 
 - Next up we will install a package called ```mongoose``` which will help us with our MongoDB database.  
 - To install mongoose:
+
 ``` 
 npm install mongoose
 ```
+- To connect to the database from our code we need to insert the code below in our server.js file: 
 
+```
+mongoose.connect(process.env.MONGO_URI).then(() => {
+    app.listen(
+            process.env.PORT, () => {
+            console.log('Listening on port 4000!!!', process.env.PORT)
+        })
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+```
+✨ Creating a Schema  
+- The benefit of using Mongoose is that we have a schema to work against in our application code and an explicit relationship between our MongoDB documents and the Mongoose models within our application.
+- To create this schema we will be creating a new folder named, model and under that folder we will create a file named ```courseModel.js```. In that file we write the below code:
+```
+const mongoose  = require('mongoose')
 
+const Schema = mongoose.Schema
+
+const courseSchema = new Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    duration: {
+        type: Number,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    }
+}, {timestamps: true})
+
+module.exports =mongoose.model('Course', courseSchema)
+
+```
+- At first,  we need to require the ```mongoose``` package 
+```
+const mongoose  = require('mongoose')
+```
+- Then we create a new Schema after declaring a function ``` const Schema = mongoose.Schema ```:
+```
+const mongoose  = require('mongoose')
+
+const Schema = mongoose.Schema
+
+const courseSchema = new Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    duration: {
+        type: Number,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    }
+}, {timestamps: true})
+
+```
+- Inside the Schema we mention the properties of our document and each of the properties are presented as objects.
+- Now to export the Schema we are creating a model and exporting it as ```Course``` so that other files can access it. 
+```
+module.exports =mongoose.model('Course', courseSchema)
+```
+
+## 👉 Interacting with the database
+- At first we will be creating a controller folder where we create a ```courseController.js``` file. 
+- This file will have all the functions that will be fired when we get an API request. 
+- In this ```courseController.js``` file we require two packages: 
+```
+const Course = require('../model/courseModel')
+const mongoose = require('mongoose')
+```
+- Then to create a new course we declare a function named ```createCourse```:
+```
+const createCourse = async (req, res) => {
+    const {title, description, duration, price} = req.body
+    try{
+        const course = await Course.create({
+            title, description, duration, price
+        })
+        res.status(200).json(course)
+    }catch{
+        res.status(200).json({error: error.message})
+    }
+}
+```
+- When we get a request from the browser, the properties of ```req.body``` object will be saved in ```title, description, duration, price```.
+- To add a new document in the collection of  our database, we use the ```create()``` method. And in this method we pass through the ```title, description, duration, price``` properties.
+- We create the methods, ``` getCourse, getCourses, updateCourse, deleteCourse``` to update, delete and get specific courses. 
 
