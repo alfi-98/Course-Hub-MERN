@@ -31,3 +31,22 @@ frontend
 
 
 # 📚 Backend
+
+- At first we create a folder named backend. 
+- Inside this folder we create a file named, server.js where we will setup our express app. 
+- Now to create the package.json file we will go to terminal and move to the backend folder.
+- We run the below command: 
+```
+npm init -y
+```
+💡This will create a package.json file.
+- The next step is to install the express package.
+```
+npm install express
+```
+- Now inside the server.js file we need to require the express package. 
+``` const express = require('express')```
+- Then we create an express app by storing it in constant app. 
+``` const app = express()```
+
+
