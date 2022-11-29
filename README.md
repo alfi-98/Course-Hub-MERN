@@ -113,14 +113,40 @@ app.listen(process.env.PORT, () => {
 ## 👉 Testing API requests.
 - To test the api requests we will be using postman.
 
-## 👉 API endpoints
-- Atfirst we create a new folder ```routes``` where we create another file named course.js. 
+## 👉 API Routes
+- At first we create a new folder ```routes``` where we create another file named course.js. 
 - To create instance of a router we need the following code inside our course.js file:
 ```
 const express = require('express')
 
 const router = express.Router()
 ```
-
+- Now, after adding the required routes our course.js file will look something like this:
 ```
+const express = require('express')
+const {createCourse, getCourse, getCourses, updateCourse, deleteCourse}
+ = require('../controllers/courseController')
+ 
+const router = express.Router()
 
+router.get('/', getCourses)
+
+router.get('/:id',getCourse)
+
+router.post('/', createCourse)
+
+router.delete('/:id',deleteCourse)
+
+router.patch('/:id',updateCourse)
+
+
+module.exports = router
+```
+- ``` router.get('/', getCourses) ```  here, when our server gets api request with the endpoint ```/```  then the ```getCourses``` function is fired.
+- In the above code, we have imported some functions from a file path: ```'../controllers/courseController'```
+- We will configure the controller functions later in this documentation.
+
+## 👉 Setting Up Database 
+- We will be using MongoDB as our database. MongoDB is a document database. Which means, instead of using tables and rows for data storing we will be using documents which resembles ```json```. 
+- Instead of configuring the database on our local machine, we will be using  MongoDB atlas which is acloud-based developer data platform. 
+- This will save us time and will be easy to manage. 
