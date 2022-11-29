@@ -17,7 +17,7 @@ app.use('/api/courses',courseRoutes)
 app.use('/api/user',userRoutes)
 
 mongoose.connect(process.env.MONGO_URI).then(() => {
-        app.listen(
+    app.listen(
             process.env.PORT, () => {
             console.log('Listening on port 4000!!!', process.env.PORT)
         })
