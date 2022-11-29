@@ -110,3 +110,17 @@ app.listen(process.env.PORT, () => {
       console.log('Listening on port ', process.env.PORT)
 }
 ```
+## 👉 Testing API requests.
+- To test the api requests we will be using postman.
+
+## 👉 API endpoints
+- Atfirst we create a new folder ```routes``` where we create another file named course.js. 
+- To create instance of a router we need the following code inside our course.js file:
+```
+const express = require('express')
+
+const router = express.Router()
+```
+
+```
+
