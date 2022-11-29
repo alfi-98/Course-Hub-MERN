@@ -33,6 +33,7 @@ frontend
 
 # 📚 Backend
 
+## 👉Setting up server.js file
 - At first we create a folder named backend. 
 - Inside this folder we create a file named, server.js where we will setup our express app. 
 - Now to create the package.json file we will go to terminal and move to the backend folder.
@@ -53,6 +54,41 @@ const express = require('express')
 ```
 const app = express()
 ```
+- To run the application in our computer we can listen for requests using the express app. 
+```
+app.listen(4000, () => {
+      console.log('Listening on port 4000')
+}
+```
+- This will run our application on localhost 4000 port when we run the below code in the terminal: 
+```
+PS F:\MERN\coursehub\backend> node server.js
+```
+## 👉Reacting to Requests
+- When we get a request from the browser we want to send back a response and to handle these requests we need to use a get() function. 
+```
+app.get('/', (req, res) => {
+      res.json({msg: 'Welcome to the app'})
+}
+```
+- get() function tells the server what to do with the get request when the given route is called. It has a callback function that listen to the incoming request ```req``` object and respond using ```res``` reponse object. 
+```
+💡The code untill looks like this: 
 
+const express = require('express')
+
+//express app
+const app = express()
+
+//routes
+app.get('/', (req, res) => {
+      res.json({msg: 'Welcome to the app'})
+})
+
+//listen for requests
+app.listen(4000, () => {
+      console.log('Listening on port 4000')
+}
+```
 
 
