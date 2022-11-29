@@ -1,13 +1,24 @@
-# Course-Hub-MERN
+# 🚀Course-Hub-MERN
 A simple course hub application using MERN (ReactJs, Express, NodeJS and MongoDB)
 File structure:
 ```
 backend
-      |-- controller
+      |-- controllers
       |            |--courseController.js
-      |-- models
+      |            |-- userController.js
+      |-- model
       |        |-- courseModel.js
+      |        |-- userModel.js
       |-- routes
       |        |-- course.js
+               |-- user.js
+               
+frontend
+       |-- components
+                   |-- CourseDetails.js
+       |
+       |
+       |
       
 ```  
+
