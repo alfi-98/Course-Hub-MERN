@@ -529,5 +529,42 @@ return (
 - As we can see that we are using setState to save our onchanged data inside the input fields.
 - To submit these data we need an async function which we name ```handleSubmit```:
 ```
-const handleSubmit = async (e)
+const handleSubmit = async (e) => {
+
+}
 ```
+- Now inside the handleSubmit we use the ```fetch()``` method to fetch our data:
+```
+const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        const course = {title, description, duration, price}
+
+        const response = await fetch('/api/courses/', {
+            method: 'POST',
+            body: JSON.stringify(course),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        const json  = await response.json()
+
+        if(!response.ok){
+            setError(json.error)
+
+        }
+        if(response.ok){
+            setTitle('')
+            setDescription('')
+            setDuration('')
+            setPrice('')
+            setError(null)
+            console.log('new course added', json)
+        }
+
+    }
+```
+- After running our application,  our Home page will look something like this:
+<img width="935" alt="image" src="https://user-images.githubusercontent.com/66726759/204710674-2021dcd2-212f-4edb-aa5a-b991b9326519.png">
+
