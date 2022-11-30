@@ -368,5 +368,166 @@ npx create-react-app frontend
 npm install react-router-dom
 ```
 - In the App.js file inside the ```/frontend/src``` folder we import ```BrowserRouter``` which wraps everywhere we want to use the router. 
+- We will clear our all the codes inside the App.js file and replace it with:
+```
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+
+function App() {
+  return (
+    <div className="App">
+      <BrowserRouter>
+  
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
+```
+- Inside the ``` <BrowserRouter>``` tag we will give the below code:
+```
+<div classname = "pages">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                 <Home />
+              }
+            />
+            </Routes>
+        </div>
+```
+- As you can see there is a <Home/> tag passed inside the routes tag. We will now build our Home page.
+
+👉 Home Page
+- Our basic Home Page structure will look something like this: 
+```
+const Home = () => {
+
+    return (
+        <div className="pages">
+           <div className ="courses">
+             
+           </div>
+           <CourseForm/>
+        </div>
+    )
+}
+
+export default Home
+```
+- Now we will fetch some data from our backend API. We will show all the courses in our Home page and we will do that using the useEffect and useState Hook of React. 
+- So, at first we import the react hooks:
+```
+import {useEffect, useState} from 'react'
+```
+- Now we declare the useEffect function inside the Home function. Then we fetch the data from the backend we create a const fetchCourses which will be an async function. Inside the function we will be using ```fetch``` api. 
+
+```
+ const [courses, setCourses] = useState(null)
+    useEffect(() => {
+        const fetchCourses = async () => {
+            const response = await fetch('/api/courses')
+            const json = await response.json()
+
+            if(response.ok){
+                setCourses(json)
+            }
+        }
+        fetchCourses()
+    }) 
+```
+- As we can see that we have used ```useState``` to store the state of the courses that will be fetched from the database. The response from the api request is being stored in a const named ```response```. Then to work with the data we need the ```json``` format of the response. 
+- After adding the loop to iterate through the courses inside the html, our code will look like this:
+```
+import {useEffect, useState} from 'react'
+import CourseDetails from '../components/CourseDetails'
+import CourseForm from '../components/CourseForm'
+const Home = () => {
+    const [courses, setCourses] = useState(null)
+    useEffect(() => {
+        const fetchCourses = async () => {
+            const response = await fetch('/api/courses')
+            const json = await response.json()
+
+            if(response.ok){
+                setCourses(json)
+            }
+        }
+        fetchCourses()
+    }) 
 
 
+    return (
+        <div className="pages">
+           <div className ="courses">
+                {courses && courses.map((course) => (
+                        <CourseDetails key={course._id} course={course} />
+                ))}
+                
+           </div>
+           <CourseForm/>
+        </div>
+    )
+}
+
+export default Home
+```
+✨ Course Form
+- We insert data to create a course we need to build a form. For this we create a new file inside the components folder. 
+- Inside the CourseForm.js file we create states for each of the properties.
+```
+const CourseForm = () =>{
+
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [duration, setDuration] = useState('')
+    const [price, setPrice] = useState('')
+    const [error, setError] = useState(null)
+    
+    return ()
+    
+    }
+```
+- Now this function will return a form:
+```
+return (
+        
+
+        <form className="create-course" onSubmit={}>
+            <h3>
+                Add a New Course
+            </h3>
+            <label>Course Title</label>
+            <input
+                type="text"
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
+            />
+
+            <label>Description</label>
+                        <input
+                            type="text"
+                            onChange={(e) => setDescription(e.target.value)}
+                            value={description}
+            />
+             <label>Duration</label>
+                        <input
+                            type="text"
+                            onChange={(e) => setDuration(e.target.value)}
+                            value={duration}
+            />
+             <label>Price</label>
+                        <input
+                            type="text"
+                            onChange={(e) => setPrice(e.target.value)}
+                            value={price}
+            />
+            <button>Add Course</button>
+        </form>
+```
+- As we can see that we are using setState to save our onchanged data inside the input fields.
+- To submit these data we need an async function which we name ```handleSubmit```:
+```
+const handleSubmit = async (e)
+```
