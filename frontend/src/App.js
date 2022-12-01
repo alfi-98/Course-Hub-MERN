@@ -32,6 +32,7 @@ function App() {
                  <Signup />
               }
             />
+          
             </Routes>
         </div>
       </BrowserRouter>

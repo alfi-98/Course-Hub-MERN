@@ -3,7 +3,7 @@ import CourseDetails from '../components/CourseDetails'
 import CourseForm from '../components/CourseForm'
 import { useAuthContext } from '../hooks/useAuthContext'
 
-const Home = () => {
+const CoursePage = () => {
     const [courses, setCourses] = useState(null)
     const {user} = useAuthContext()
     useEffect(() => {
@@ -42,4 +42,4 @@ const Home = () => {
 
 
 
-export default Home
+export default CoursePage

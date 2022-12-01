@@ -1,10 +1,12 @@
+
 const CourseDetails = ({course}) => {
 
-
     const handleDelete = async (e) => {
-        e.preventDefault()
+       
+    
         const response = await fetch('/api/course' + course._id, {
-            method: 'DELETE' 
+            method: 'DELETE' ,
+       
         })
         const json  = await response.json()
 
@@ -24,6 +26,16 @@ const CourseDetails = ({course}) => {
             <p>
                 <strong>Price: </strong>{course.price}
             </p>
+
+            <div className="CRUD-BUTTON">
+                
+            <button className="view">View</button>
+                <button className="update">Update</button>
+                <button className="delete ">Delete</button>
+            </div>
+            
+
+        
             {/* <span onClick={handleDelete}>Delete</span> */}
         </div>
     )

@@ -18,7 +18,7 @@ const userSchema = new Schema({
 
 
 userSchema.statics.signup = async function(email, password) {
-
+ 
     if(!email || !password){
         throw Error('All fields must be filled')
     }
@@ -63,7 +63,7 @@ userSchema.statics.login = async function(email, password){
     }
 
     return user
-
+ 
 }
 
 module.exports  = mongoose.model('User', userSchema)
