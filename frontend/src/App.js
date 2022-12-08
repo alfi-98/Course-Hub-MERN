@@ -5,6 +5,8 @@ import Navbar from './components/Navbar'
 import './index.css';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import CourseUpdatePage from './pages/CourseUpdatePage';
+import CoursePage from './pages/CoursePage';
 
 
 function App() {
@@ -32,6 +34,21 @@ function App() {
                  <Signup />
               }
             />
+              <Route
+              path="/updatePage/:id"
+              element={
+                 <CourseUpdatePage />
+              }
+            />
+            <Route
+              path="/coursePage/:id"
+              element={
+                 <CoursePage />
+              }
+            />
+
+            
+            
           
             </Routes>
         </div>

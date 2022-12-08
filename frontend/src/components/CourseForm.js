@@ -1,8 +1,11 @@
 import { useState } from "react"
 import { useAuthContext } from "../hooks/useAuthContext"
+import { useCourseContext } from "../hooks/useCourseContext"
+
+
 const CourseForm = () =>{
 
-
+    const {dispatch} = useCourseContext()
     const {user} = useAuthContext()
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -42,6 +45,7 @@ const CourseForm = () =>{
             setPrice('')
             setError(null)
             console.log('new course added', json)
+            dispatch({type: 'CREATE_COURSE', payload: json})
         }
 
     }

@@ -7,9 +7,10 @@ const {createCourse, getCourse, getCourses, updateCourse, deleteCourse}
 const router = express.Router()
 
 
-/** 
-router.use(requireAuth)
-*/
+/**
+ * router.use(requireAuth)
+ */
+
 
 router.get('/', getCourses)
 

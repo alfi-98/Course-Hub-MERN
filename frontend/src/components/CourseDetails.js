@@ -1,19 +1,31 @@
+import { useCourseContext } from "../hooks/useCourseContext"
+import { useAuthContext } from "../hooks/useAuthContext"
+import { Link } from "react-router-dom"
+import CourseUpdatePage from './../pages/CourseUpdatePage';
 
 const CourseDetails = ({course}) => {
 
+    const {dispatch} = useCourseContext()
+    const {user } = useAuthContext()
     const handleDelete = async (e) => {
        
-    
-        const response = await fetch('/api/course' + course._id, {
+        if(!user){
+            return
+        }
+        const response = await fetch('/api/courses/' + course._id, {
             method: 'DELETE' ,
        
         })
         const json  = await response.json()
 
-       
+       if(response.ok){
+        dispatch({type: 'DELETE', payload: json})
+       }
        
 
     }
+
+ 
     return(
         <div className="course-details">
             <h4>{course.title}</h4>
@@ -28,11 +40,19 @@ const CourseDetails = ({course}) => {
             </p>
 
             <div className="CRUD-BUTTON">
+            <Link to={{pathname: `/coursePage/${course._id}`, 
+                       data: course._id
                 
+                    }} >
             <button className="view">View</button>
-                <button className="update">Update</button>
-                <button className="delete ">Delete</button>
-            </div>
+            </Link>
+            
+                <Link to={{pathname: "/updatePage/"+course._id, 
+                       data: course._id
+                
+                    }} > <button className="update" >Update</button></Link>
+                <button className="delete " onClick={handleDelete}>Delete</button>
+            </div> 
             
 
         
